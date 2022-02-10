@@ -7,3 +7,11 @@
 .cl-yellow {
     color: #ffc66d;
 }
+
+.font-weight-medium {
+    font-weight: 500;
+}
+
+hr {
+    background-color: #c8c9ca;
+}
