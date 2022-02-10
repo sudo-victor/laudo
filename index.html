@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="p-5">
-    <form class="d-flex flex-column m-5 p-5">
+    <form class="d-flex flex-column p-5">
         <fieldset>
             <legend class="text-uppercase cl-yellow font-weight-medium">Dados Gerais do Ensaio</legend>
             <hr/>
@@ -30,11 +30,11 @@
                 <div class="form-group col">
                     <label for="testador">Testador</label>
                     <select class="form-control form-control-sm" id="testador">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
                     </select>
                 </div>
 
@@ -48,33 +48,33 @@
                 <div class="form-group col">
                     <label for="cabecalho">Cabeçalho</label>
                     <select class="form-control form-control-sm" id="cabecalho">
-                        <option>Selecione</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="0">Selecione</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
                     </select>
                 </div>
                 
                 <div class="form-group col">
                     <label for="assinatura_1">Assinatura 1</label>
                     <select class="form-control form-control-sm" id="assinatura_1">
-                        <option>Selecione</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="1">Selecione</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
                     </select>
                 </div>
                 
                 <div class="form-group col">
                     <label for="assinatura_1">Assinatura 2</label>
                     <select class="form-control form-control-sm" id="assinatura_2">
-                        <option>Selecione</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="1">Selecione</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
                     </select>
                 </div>
 
@@ -87,59 +87,63 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col">
-                    <label for="categoria">Categoria:</label>
-                    <input class="form-control form-control-sm" id="categoria" aria-describedby="categoriaField">
+            <div class="inputs-hidden">
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="categoria">Categoria:</label>
+                        <input class="form-control form-control-sm" id="categoria" aria-describedby="categoriaField">
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="marca_produto">Marca do Produto:</label>
+                        <input class="form-control form-control-sm" id="marca_produto" aria-describedby="marcaProdutoField">
+                    </div>
                 </div>
 
-                <div class="form-group col">
-                    <label for="marca_produto">Marca do Produto:</label>
-                    <input class="form-control form-control-sm" id="marca_produto" aria-describedby="marcaProdutoField">
-                </div>
-            </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="estado">Estado:</label>
+                        <input class="form-control form-control-sm" id="estado" aria-describedby="estadoField">
+                    </div>
 
-            <div class="row">
-                <div class="form-group col">
-                    <label for="estado">Estado:</label>
-                    <input class="form-control form-control-sm" id="estado" aria-describedby="estadoField">
-                </div>
-
-                <div class="form-group col">
-                    <label for="lanca">Lança:</label>
-                    <input class="form-control form-control-sm" id="lanca" aria-describedby="lancaField">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col">
-                    <label for="numero_serie">N° de Série:</label>
-                    <input class="form-control form-control-sm" id="numero_serie" aria-describedby="numeroSerieField">
+                    <div class="form-group col">
+                        <label for="lanca">Lança:</label>
+                        <input class="form-control form-control-sm" id="lanca" aria-describedby="lancaField">
+                    </div>
                 </div>
 
-                <div class="form-group col">
-                    <label for="modelo">Modelo:</label>
-                    <input class="form-control form-control-sm" id="modelo" aria-describedby="modeloField">
-                </div>
-            </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="numero_serie">N° de Série:</label>
+                        <input class="form-control form-control-sm" id="numero_serie" aria-describedby="numeroSerieField">
+                    </div>
 
-            <div class="row">
-                <div class="form-group col">
-                    <label for="chassi">Chassi:</label>
-                    <input class="form-control form-control-sm" id="chassi" aria-describedby="chassiField">
+                    <div class="form-group col">
+                        <label for="modelo">Modelo:</label>
+                        <input class="form-control form-control-sm" id="modelo" aria-describedby="modeloField">
+                    </div>
                 </div>
 
-                <div class="form-group col">
-                    <label for="cesto">Cesto:</label>
-                    <input class="form-control form-control-sm" id="cesto" aria-describedby="cestoField">
-                </div>
-            </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="chassi">Chassi:</label>
+                        <input class="form-control form-control-sm" id="chassi" aria-describedby="chassiField">
+                    </div>
 
-            <div class="row">
-                <div class="form-group col-6">
-                    <label for="estabilizador">Estabilizador:</label>
-                    <input class="form-control form-control-sm" id="estabilizador" aria-describedby="estabilizadorField">
+                    <div class="form-group col">
+                        <label for="cesto">Cesto:</label>
+                        <input class="form-control form-control-sm" id="cesto" aria-describedby="cestoField">
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="estabilizador">Estabilizador:</label>
+                        <input class="form-control form-control-sm" id="estabilizador" aria-describedby="estabilizadorField">
+                    </div>
+                </div>
+                
             </div>
 
         </fieldset>
@@ -152,11 +156,11 @@
                 <div class="form-group col-6">
                     <label for="nome_cliente">Nome do Solicitante</label>
                     <select class="form-control form-control-sm" id="nome_cliente">
-                        <option>Selecione o cliente</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="1">Selecione o cliente</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
                     </select>
                 </div>
             </div>
@@ -171,11 +175,11 @@
                 <div class="form-group col">
                     <label for="equipamento">Nome do Equipamento:</label>
                     <select class="form-control form-control-sm" id="equipamento">
-                        <option>Selecione um equipamento</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="1">Selecione um equipamento</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="1">5</option>
                     </select>
                 </div>
 
@@ -201,5 +205,7 @@
       </form>
         
     </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>
