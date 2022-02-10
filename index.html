@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Laudo</title>
+</head>
+<body>
+    <form class="d-flex flex-column p-4">
+        <fieldset>
+            <legend class="text-uppercase cl-yellow">Dados Gerais do Ensaio</legend>
+            <hr/>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="laudo_id">N° do Laudo</label>
+                    <input type="number" class="form-control form-control-sm" id="laudo_id" aria-describedby="numeroLaudoField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="data_ensaio">Data do Ensaio</label>
+                    <input type="date" class="form-control form-control-sm" id="data_ensaio" aria-describedby="dataEnsaioField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="testador">Testador</label>
+                    <select class="form-control form-control-sm" id="testador">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+                <div class="form-group col">
+                    <label for="placa_matricula">Placa/Matrícula</label>
+                    <input class="form-control form-control-sm" id="placa_matricula" aria-describedby="placaMatriculaField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="cabecalho">Cabeçalho</label>
+                    <select class="form-control form-control-sm" id="cabecalho">
+                        <option>Selecione</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                
+                <div class="form-group col">
+                    <label for="assinatura_1">Assinatura 1</label>
+                    <select class="form-control form-control-sm" id="assinatura_1">
+                        <option>Selecione</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                
+                <div class="form-group col">
+                    <label for="assinatura_1">Assinatura 2</label>
+                    <select class="form-control form-control-sm" id="assinatura_2">
+                        <option>Selecione</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ensaios_realizados">Ensaios Realizados:</label>
+                    <input class="form-control form-control-sm" id="ensaios_realizados" aria-describedby="ensaiosRealizadosField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="categoria">Categoria:</label>
+                    <input class="form-control form-control-sm" id="categoria" aria-describedby="categoriaField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="marca_produto">Marca do Produto:</label>
+                    <input class="form-control form-control-sm" id="marca_produto" aria-describedby="marcaProdutoField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="estado">Estado:</label>
+                    <input class="form-control form-control-sm" id="estado" aria-describedby="estadoField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="lanca">Lança:</label>
+                    <input class="form-control form-control-sm" id="lanca" aria-describedby="lancaField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="numero_serie">N° de Série:</label>
+                    <input class="form-control form-control-sm" id="numero_serie" aria-describedby="numeroSerieField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="modelo">Modelo:</label>
+                    <input class="form-control form-control-sm" id="modelo" aria-describedby="modeloField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="chassi">Chassi:</label>
+                    <input class="form-control form-control-sm" id="chassi" aria-describedby="chassiField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="cesto">Cesto:</label>
+                    <input class="form-control form-control-sm" id="cesto" aria-describedby="cestoField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="estabilizador">Estabilizador:</label>
+                    <input class="form-control form-control-sm" id="estabilizador" aria-describedby="estabilizadorField">
+                </div>
+            </div>
+
+        </fieldset>
+        
+        <fieldset>
+            <legend class="text-uppercase cl-yellow">Dados do Solicitante</legend>
+            <hr/>
+
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="nome_cliente">Nome do Solicitante</label>
+                    <select class="form-control form-control-sm" id="nome_cliente">
+                        <option>Selecione o cliente</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+
+        </fieldset>
+        
+        <fieldset>
+            <legend class="text-uppercase cl-yellow">Lista de Equipamentos Testados</legend>
+            <hr/>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="equipamento">Nome do Equipamento:</label>
+                    <select class="form-control form-control-sm" id="equipamento">
+                        <option>Selecione um equipamento</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+                <div class="form-group col">
+                    <label for="numero_rastreio">N° de Rastreio:</label>
+                    <input class="form-control form-control-sm" id="numero_rastreio" aria-describedby="numeroRastreioField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="numero_serie_ca">N° de Séria/CA:</label>
+                    <input class="form-control form-control-sm" id="numero_serie_ca" aria-describedby="numeroSerieCAField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="Resultado">Resultado:</label>
+                    <input class="form-control form-control-sm" id="Resultado" aria-describedby="resultadoField">
+                </div>
+            </div>
+
+        </fieldset>
+
+        <button type="submit" class="btn btn-success btn-sm align-self-end">Gerar Laudo</button>
+      </form>
+</body>
+</html>
