@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+legend {
+    width: auto !important;
+    margin: 0 !important;
+}
+
+hr {
+    background-color: #c8c9ca;
+}
+
 .cl-yellow {
     color: #ffc66d;
 }
@@ -12,13 +21,30 @@
     font-weight: 500;
 }
 
-hr {
-    background-color: #c8c9ca;
-}
-
 .inputs-hidden {
     height: auto;
     overflow: hidden;
 
     transition: 2000ms ease;
+}
+
+.action-container-btn span {
+    width: 2px;
+    height: 15px;
+    background: #ffc66d;
+}
+
+.btn-action {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+    background: #ca8a49;
+    color: #fff;
+    line-height: 0px;
 }
