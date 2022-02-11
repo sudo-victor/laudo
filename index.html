@@ -10,7 +10,7 @@
     <title>Laudo</title>
 </head>
 <body>
-    <form class="d-flex flex-column p-5">
+    <form class="d-flex flex-column p-5" id="laudo-form">
         <fieldset>
             <legend class="text-uppercase cl-yellow font-weight-medium">Dados Gerais do Ensaio</legend>
             <hr/>
@@ -67,7 +67,7 @@
                 </div>
                 
                 <div class="form-group col">
-                    <label for="assinatura_1">Assinatura 2</label>
+                    <label for="assinatura_2">Assinatura 2</label>
                     <select class="form-control form-control-sm" id="assinatura_2">
                         <option value="1">Selecione</option>
                         <option value="1">2</option>
@@ -180,7 +180,7 @@
             <div class="row grupo-equipamentos">
                 <div class="form-group col">
                     <label for="equipamento">Nome do Equipamento:</label>
-                    <select class="form-control form-control-sm" id="equipamento[]">
+                    <select class="form-control form-control-sm equipamento" id="equipamento">
                         <option value="1">Selecione um equipamento</option>
                         <option value="1">2</option>
                         <option value="1">3</option>
@@ -191,17 +191,17 @@
 
                 <div class="form-group col">
                     <label for="numero_rastreio">N° de Rastreio:</label>
-                    <input class="form-control form-control-sm" id="numero_rastreio[]" aria-describedby="numeroRastreioField">
+                    <input class="form-control form-control-sm numero_rastreio" id="numero_rastreio" aria-describedby="numeroRastreioField">
                 </div>
 
                 <div class="form-group col">
                     <label for="numero_serie_ca">N° de Séria/CA:</label>
-                    <input class="form-control form-control-sm" id="numero_serie_ca[]" aria-describedby="numeroSerieCAField">
+                    <input class="form-control form-control-sm numero_serie_ca" id="numero_serie_ca" aria-describedby="numeroSerieCAField">
                 </div>
 
                 <div class="form-group col">
                     <label for="resultado">Resultado:</label>
-                    <input class="form-control form-control-sm" id="resultado[]" aria-describedby="resultadoField">
+                    <input class="form-control form-control-sm resultado" id="resultado" aria-describedby="resultadoField">
                 </div>
             </div>
 
