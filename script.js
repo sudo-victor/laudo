@@ -19,13 +19,14 @@ function addEquipmentGroup() {
     const newEquipment = `
         <div class="form-group col">
             <label for="equipamento">Nome do Equipamento:</label>
-            <select class="form-control form-control-sm equipamento" id="equipamento">
-                <option value="1">Selecione um equipamento</option>
-                <option value="1">2</option>
-                <option value="1">3</option>
-                <option value="1">4</option>
-                <option value="1">5</option>
-            </select>
+            <input list="equipments" class="form-control form-control-sm equipamento" id="equipamento">
+            <datalist id="equipments">
+                <option value="Internet Explorer">
+                <option value="Firefox">
+                <option value="Chrome">
+                <option value="Opera">
+                <option value="Safari">
+            </datalist>  
         </div>
 
         <div class="form-group col">
@@ -112,3 +113,7 @@ function handleSubmit(e) {
 
 laudoFormElement.addEventListener('submit', handleSubmit)
 cabecalhoElement.addEventListener('change', toggleInputsHidden);
+
+$(function() {
+  $('.selectpicker').selectpicker();
+});

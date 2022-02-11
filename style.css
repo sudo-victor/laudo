@@ -7,6 +7,7 @@
 legend {
     width: auto !important;
     margin: 0 !important;
+    border: none !important;
 }
 
 hr {
@@ -24,8 +25,6 @@ hr {
 .inputs-hidden {
     height: auto;
     overflow: hidden;
-
-    transition: 2000ms ease;
 }
 
 .action-container-btn span {
@@ -47,4 +46,13 @@ hr {
     background: #ca8a49;
     color: #fff;
     line-height: 0px;
+}
+
+.form-control:focus {
+    border-color: #ffc66d !important;
+    box-shadow: none !important;
+}
+
+.bs-caret {
+    display: none;
 }
