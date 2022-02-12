@@ -28,18 +28,18 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="laudo_id">N° do Laudo</label>
-                    <input type="number" class="form-control form-control" id="laudo_id" aria-describedby="numeroLaudoField">
+                    <input type="number" class="form-control form-control" id="laudo_id" aria-describedby="numeroLaudoField" required required>
                 </div>
 
                 <div class="form-group col">
                     <label for="data_ensaio">Data do Ensaio</label>
-                    <input type="date" class="form-control form-control" id="data_ensaio" aria-describedby="dataEnsaioField">
+                    <input type="date" class="form-control form-control" id="data_ensaio" aria-describedby="dataEnsaioField" required required>
                 </div>
 
                 <div class="form-group col">
                     <label for="testador">Testador</label>
-                    <select class="form-control form-control" id="testador">
-                        <option value="1">Selecione</option>
+                    <select class="form-control form-control" id="testador"  required required>
+                        <option value="">Selecione</option>
                         <option value="1">2</option>
                         <option value="1">3</option>
                         <option value="1">4</option>
@@ -49,14 +49,14 @@
 
                 <div class="form-group col">
                     <label for="placa_matricula">Placa/Matrícula</label>
-                    <input class="form-control form-control" id="placa_matricula" aria-describedby="placaMatriculaField">
+                    <input class="form-control form-control" id="placa_matricula" aria-describedby="placaMatriculaField" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col">
                     <label for="cabecalho">Cabeçalho</label>
-                    <select class="form-control form-control" id="cabecalho">
+                    <select class="form-control form-control" id="cabecalho" required>
                         <option value="0">Selecione</option>
                         <option value="1">2</option>
                         <option value="1">3</option>
@@ -67,8 +67,8 @@
                 
                 <div class="form-group col">
                     <label for="assinatura_1">Assinatura 1</label>
-                    <select class="form-control form-control" id="assinatura_1">
-                        <option value="1">Selecione</option>
+                    <select class="form-control form-control" id="assinatura_1" required>
+                        <option value="">Selecione</option>
                         <option value="1">2</option>
                         <option value="1">3</option>
                         <option value="1">4</option>
@@ -78,8 +78,8 @@
                 
                 <div class="form-group col">
                     <label for="assinatura_2">Assinatura 2</label>
-                    <select class="form-control form-control" id="assinatura_2">
-                        <option value="1">Selecione</option>
+                    <select class="form-control form-control" id="assinatura_2" required>
+                        <option value="">Selecione</option>
                         <option value="1">2</option>
                         <option value="1">3</option>
                         <option value="1">4</option>
@@ -92,7 +92,7 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="ensaios_realizados">Ensaios Realizados:</label>
-                    <input class="form-control form-control" id="ensaios_realizados" aria-describedby="ensaiosRealizadosField">
+                    <input class="form-control form-control" id="ensaios_realizados" aria-describedby="ensaiosRealizadosField" required>
                 </div>
             </div>
 
@@ -164,8 +164,8 @@
             <div class="row">
                 <div class="form-group col-6">
                     <label for="nome_cliente">Nome do Solicitante</label>
-                    <select class="form-control form-control  solicitanteSelect" id="nome_cliente"  data-live-search="true">
-                        <option data-tokes="1">Selecione um equipamento</option>
+                    <select class="form-control form-control  solicitanteSelect" id="nome_cliente"  data-live-search="true" required>
+                        <option data-tokes="">Selecione um equipamento</option>
                         <option data-tokes="equipamento_1">equipamento 1</option>
                         <option data-tokes="equipamento_2">equipamento 2</option>
                         <option data-tokes="equipamento_3">equipamento 3</option>
@@ -197,8 +197,8 @@
             <div class="row grupo-equipamentos">
                 <div class="form-group col">
                     <label for="equipamento">Nome do Equipamento:</label>
-                    <select class="form-control form-control equipamento  selectpicker" id="equipamento"  data-live-search="true">
-                        <option data-tokes="1">Selecione um equipamento</option>
+                    <select class="form-control form-control equipamento  selectpicker" id="equipamento"  data-live-search="true" required>
+                        <option data-tokes="">Selecione um equipamento</option>
                         <option data-tokes="equipamento_1">equipamento 1</option>
                         <option data-tokes="equipamento_2">equipamento 2</option>
                         <option data-tokes="equipamento_3">equipamento 3</option>
@@ -212,17 +212,17 @@
 
                 <div class="form-group col">
                     <label for="numero_rastreio">N° de Rastreio:</label>
-                    <input class="form-control form-control numero_rastreio" id="numero_rastreio" aria-describedby="numeroRastreioField">
+                    <input class="form-control form-control numero_rastreio" id="numero_rastreio" aria-describedby="numeroRastreioField" required>
                 </div>
 
                 <div class="form-group col">
                     <label for="numero_serie_ca">N° de Séria/CA:</label>
-                    <input class="form-control form-control numero_serie_ca" id="numero_serie_ca" aria-describedby="numeroSerieCAField">
+                    <input class="form-control form-control numero_serie_ca" id="numero_serie_ca" aria-describedby="numeroSerieCAField" required>
                 </div>
 
                 <div class="form-group col">
                     <label for="resultado">Resultado:</label>
-                    <input class="form-control form-control resultado" id="resultado" aria-describedby="resultadoField">
+                    <input class="form-control form-control resultado" id="resultado" aria-describedby="resultadoField" required>
                 </div>
             </div>
 

@@ -22,8 +22,8 @@ function addEquipmentGroup() {
     const newEquipment = `
         <div class="form-group col">
         <label for="equipamento_${idx}">Nome do Equipamento:</label>
-        <select class="form-control form-control equipamento equipamento_${idx}" id="equipamento_${idx}"  data-live-search="true">
-            <option data-tokes="1">Selecione um equipamento</option>
+        <select class="form-control form-control equipamento equipamento_${idx}" id="equipamento_${idx}"  data-live-search="true" required>
+            <option data-tokes="">Selecione um equipamento</option>
             <option data-tokes="equipamento_234">equipamento 1</option>
             <option data-tokes="equipamento_2342">equipamento 2</option>
             <option data-tokes="equipamento_3876">equipamento 3</option>
