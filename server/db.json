@@ -1,0 +1,51 @@
+{
+  "laudo": [
+    {
+      "laudo": "2234234",
+      "data_ensaio": "2022-02-03",
+      "testador": "1",
+      "placa_matricula": "asdasdas",
+      "cabecalho": "1",
+      "assinatura_1": "1",
+      "assinatura_2": "1",
+      "ensaios_realizados": "teste",
+      "nome_cliente": "equipamento 6",
+      "equipamentos": [
+        {
+          "equipamento": "equipamento 4",
+          "numero_rastreio": "teste",
+          "numero_serie": "teste",
+          "resultado": "teste"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "laudo": "123321",
+      "data_ensaio": "2022-02-17",
+      "testador": "1",
+      "placa_matricula": "123123",
+      "cabecalho": "0",
+      "assinatura_1": "1",
+      "assinatura_2": "1",
+      "ensaios_realizados": "teste",
+      "categoria": "categoria",
+      "estado": "estado",
+      "numero_serie": "serie",
+      "modelo": "modelo",
+      "chassi": "chassi",
+      "cesto": "cesto",
+      "estabilizador": "estabilizador",
+      "nome_cliente": "equipamento 4",
+      "equipamentos": [
+        {
+          "equipamento": "equipamento 2",
+          "numero_rastreio": "teste",
+          "numero_serie": "teste",
+          "resultado": "teste"
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
