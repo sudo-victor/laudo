@@ -122,7 +122,7 @@ function handleSubmit(e) {
     const data = getDataFormatted();
 
     var fetchConfig = { 
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ function handleSubmit(e) {
         body: JSON.stringify(data)
     };
 
-    fetch('/laudo', fetchConfig)
+    fetch('http://localhost:3000/laudo', fetchConfig)
     .then(function(response) {
         return response.json();
     })
