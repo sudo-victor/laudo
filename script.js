@@ -5,12 +5,21 @@ const configPlusElement = document.querySelector('.config-adicionais');
 const equipmentsElement = document.querySelector('#equipments');
 
 let configOpenned = false;
+const selectClassWithSearch = ['solicitanteSelect', 'selectpicker']; // Nome de todas as classes CSS que deseja utilizar o select com pesquisa
+
+function loadSelectWithSearch() {
+    selectClassWithSearch.forEach((className) => {
+        $(() => {
+            $(`.${className}`).selectpicker();
+        });
+    });    
+}
 
 function toggleInputsHidden(e) {
     if(Number(e.target.value) !== 0) {
-        inputsHiddenElement.style.height = '0px';
+        inputsHiddenElement.style.display = 'none';
     } else {
-        inputsHiddenElement.style.height = 'auto';
+        inputsHiddenElement.style.display = 'block';
     }
 }
 
@@ -24,15 +33,8 @@ function toggleConfigPlus() {
     }
 }
 
-function addEquipmentGroup() {
-    const newElement = document.createElement('div');
-
-    const idx = document.querySelectorAll('.grupo-equipamentos').length + 1;
-
-    newElement.classList.add('row'); 
-    newElement.classList.add('grupo-equipamentos');
-    
-    const newEquipment = `
+function generateEquipmentTemplate(idx) {
+    return `
         <div class="form-group col">
         <label for="equipamento_${idx}">Nome do Equipamento:</label>
         <select class="form-control form-control equipamento equipamento_${idx}" id="equipamento_${idx}"  data-live-search="true" required>
@@ -48,23 +50,30 @@ function addEquipmentGroup() {
         </div>
 
         <div class="form-group col">
-            <label for="numero_rastreio">N° de Rastreio:</label>
-            <input class="form-control form-control-sm numero_rastreio" id="numero_rastreio" aria-describedby="numeroRastreioField">
+            <label for="numero_rastreio_${idx}">N° de Rastreio:</label>
+            <input class="form-control form-control-sm numero_rastreio_${idx}" id="numero_rastreio_${idx}" aria-describedby="numeroRastreioField">
         </div>
 
         <div class="form-group col">
-            <label for="numero_serie_ca">N° de Séria/CA:</label>
-            <input class="form-control form-control-sm numero_serie_ca" id="numero_serie_ca" aria-describedby="numeroSerieCAField">
+            <label for="numero_serie_ca_${idx}">N° de Séria/CA:</label>
+            <input class="form-control form-control-sm numero_serie_ca_${idx}" id="numero_serie_ca_${idx}" aria-describedby="numeroSerieCAField">
         </div>
 
         <div class="form-group col">
-            <label for="resultado">Resultado:</label>
-            <input class="form-control form-control-sm resultado" id="resultado" aria-describedby="resultadoField">
+            <label for="resultado_${idx}">Resultado:</label>
+            <input class="form-control form-control-sm resultado_${idx}" id="resultado_${idx}" aria-describedby="resultadoField">
         </div>
 
     `
+}
 
-    newElement.innerHTML = newEquipment;
+function addEquipmentGroup() {
+    const newElement = document.createElement('div');
+    const idx = document.querySelectorAll('.grupo-equipamentos').length + 1;
+
+    newElement.classList.add('row'); 
+    newElement.classList.add('grupo-equipamentos');
+    newElement.innerHTML = generateEquipmentTemplate(idx);
 
     equipmentsElement.appendChild(newElement);
     $(function() {
@@ -124,6 +133,20 @@ function getDataFormatted() {
         equipments.push(equipmentData);
     })
 
+    // Adiciona as configurações adicionais no objeto data se estiver ativado
+    if(configOpenned) {
+        data['validade_teste'] = document.querySelector('#validade_teste').value;
+        data['cidade'] = document.querySelector('#cidade').value;
+        data['temperatura_ambiente'] = document.querySelector('#temperatura_ambiente').value;
+        data['umidade_relativa'] = document.querySelector('#umidade_relativa').value;
+        data['ensaio_visual'] = document.querySelector('#ensaio_visual').value;
+        data['ensaio_dimensional'] = document.querySelector('#ensaio_dimensional').value;
+        data['ensaio_realizado'] = document.querySelector('#ensaio_realizado').value;
+        data['resultado_ensaio'] = document.querySelector('#resultado_ensaio').value;
+        data['isencao_responsabilidade'] = document.querySelector('#isencao_responsabilidade').value;
+        data['recomendacao'] = document.querySelector('#recomendacao').value;
+    }
+
     data['equipamentos'] = [...equipments];
 
     return data;
@@ -147,8 +170,8 @@ function handleSubmit(e) {
     .then(function(response) {
         return response.json();
     })
-    .then(function(data) {
-        console.log(data)
+    .then(function(responseJson) {
+        console.log(responseJson)
     })
     .catch(function(err) {
         console.log(err)
@@ -161,11 +184,4 @@ function handleSubmit(e) {
 
 laudoFormElement.addEventListener('submit', handleSubmit)
 cabecalhoElement.addEventListener('change', toggleInputsHidden);
-
-$(function() {
-    $('.selectpicker').selectpicker();
-});
-
-$(function() {
-$('.solicitanteSelect').selectpicker();
-});
+window.addEventListener('load', loadSelectWithSearch);

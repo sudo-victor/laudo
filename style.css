@@ -7,7 +7,6 @@
 legend {
     width: auto !important;
     margin: 0 !important;
-    margin-top: 15px !important;
     border: none !important;
 }
 
@@ -21,11 +20,6 @@ hr {
 
 .font-weight-medium {
     font-weight: 500;
-}
-
-.inputs-hidden {
-    height: auto;
-    overflow: hidden;
 }
 
 .config-adicionais {
