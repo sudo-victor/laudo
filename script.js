@@ -68,9 +68,7 @@ function removeEquipmentGroup() {
     equipmentsElement.removeChild(equipmentGroupElement);
 }
 
-function handleSubmit(e) {
-    e.preventDefault();
-
+function getDataFormatted() {
     let data = {}
 
     data['laudo'] = document.querySelector('#laudo_id').value;
@@ -114,6 +112,35 @@ function handleSubmit(e) {
     })
 
     data['equipamentos'] = [...equipments];
+
+    return data;
+}
+
+function handleSubmit(e) {
+    e.preventDefault();
+
+    const data = getDataFormatted();
+
+    var fetchConfig = { 
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch('/laudo', fetchConfig)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data)
+    })
+    .catch(function(err) {
+        console.log(err)
+    });
+
 
     console.log(data);
     
