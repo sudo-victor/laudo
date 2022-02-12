@@ -1,0 +1,4 @@
+- [ ] Deixar a requisição já preparada;
+- [x] Arrumar os ícones;
+- [ ] Adicionar mais configurações;
+- [ ] campos requiridos;

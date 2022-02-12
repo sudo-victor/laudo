@@ -13,20 +13,25 @@ function toggleInputsHidden(e) {
 
 function addEquipmentGroup() {
     const newElement = document.createElement('div');
+
+    const idx = document.querySelectorAll('.grupo-equipamentos').length + 1;
+
     newElement.classList.add('row'); 
     newElement.classList.add('grupo-equipamentos');
     
     const newEquipment = `
         <div class="form-group col">
-            <label for="equipamento">Nome do Equipamento:</label>
-            <input list="equipments" class="form-control form-control-sm equipamento" id="equipamento">
-            <datalist id="equipments">
-                <option value="Internet Explorer">
-                <option value="Firefox">
-                <option value="Chrome">
-                <option value="Opera">
-                <option value="Safari">
-            </datalist>  
+        <label for="equipamento_${idx}">Nome do Equipamento:</label>
+        <select class="form-control form-control equipamento equipamento_${idx}" id="equipamento_${idx}"  data-live-search="true">
+            <option data-tokes="1">Selecione um equipamento</option>
+            <option data-tokes="equipamento_234">equipamento 1</option>
+            <option data-tokes="equipamento_2342">equipamento 2</option>
+            <option data-tokes="equipamento_3876">equipamento 3</option>
+            <option data-tokes="equipamento_4567">equipamento 4</option>
+            <option data-tokes="equipamento_5646">equipamento 5</option>
+            <option data-tokes="equipamento_6567">equipamento 6</option>
+            <option data-tokes="equipamento_7765">equipamento 7</option>
+        </select>
         </div>
 
         <div class="form-group col">
@@ -49,6 +54,9 @@ function addEquipmentGroup() {
     newElement.innerHTML = newEquipment;
 
     equipmentsElement.appendChild(newElement);
+    $(function() {
+        $(`.equipamento_${idx}`).selectpicker();
+    });
 }
 
 function removeEquipmentGroup() {
@@ -89,7 +97,7 @@ function handleSubmit(e) {
     let equipments = []
 
     // Form Array
-    const equipamentoArrayGroup = document.querySelectorAll('.equipamento');
+    const equipamentoArrayGroup = document.querySelectorAll('select.equipamento');
     const numeroRastreioArrayGroup = document.querySelectorAll('.numero_rastreio');
     const numeroSerieArrayGroup = document.querySelectorAll('.numero_serie_ca');
     const resultadoArrayGroup = document.querySelectorAll('.resultado');
@@ -115,5 +123,9 @@ laudoFormElement.addEventListener('submit', handleSubmit)
 cabecalhoElement.addEventListener('change', toggleInputsHidden);
 
 $(function() {
-  $('.selectpicker').selectpicker();
+    $('.selectpicker').selectpicker();
+});
+
+$(function() {
+$('.solicitanteSelect').selectpicker();
 });
