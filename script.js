@@ -1,13 +1,26 @@
 const laudoFormElement = document.querySelector('#laudo-form');;
 const cabecalhoElement = document.querySelector('#cabecalho');
 const inputsHiddenElement = document.querySelector('.inputs-hidden');
+const configPlusElement = document.querySelector('.config-adicionais');
 const equipmentsElement = document.querySelector('#equipments');
+
+let configOpenned = false;
 
 function toggleInputsHidden(e) {
     if(Number(e.target.value) !== 0) {
         inputsHiddenElement.style.height = '0px';
     } else {
         inputsHiddenElement.style.height = 'auto';
+    }
+}
+
+function toggleConfigPlus() {
+    if(configOpenned) {
+        configPlusElement.style.display = 'none';
+        configOpenned = false;
+    } else {
+        configPlusElement.style.display = 'block';
+        configOpenned = true;
     }
 }
 

@@ -228,7 +228,78 @@
 
         </fieldset>
 
-        <button type="submit" class="btn btn-success btn align-self-end">Gerar Laudo</button>
+        <button type="submit" class="btn btn-success align-self-end">Gerar Laudo</button>
+
+        <div class="row d-flex  flex-column">
+            <button type="button" class="btn align-self-end" onclick="toggleConfigPlus()">Mais configurações</button>
+        </div>
+
+        <fieldset class="config-adicionais">
+            <legend class="text-uppercase cl-yellow font-weight-medium">Configurações Adicionais</legend>
+            <hr/>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="calidade_teste">Validade do teste</label>
+                    <input class="form-control form-control" id="calidade_teste" aria-describedby="calidadeTesteField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="cidade">Cidade do Serviço</label>
+                    <input class="form-control form-control" id="cidade" aria-describedby="cidadeField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="temperatura_ambiente">Temperatura do Ambiente</label>
+                    <input class="form-control form-control" id="temperatura_ambiente" aria-describedby="temperaturaAmbienteField">
+                </div>
+
+                <div class="form-group col">
+                    <label for="umidade_relativa">Umidade Relativa</label>
+                    <input class="form-control form-control" id="umidade_relativa" aria-describedby="umidadeRelativaField">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="texto_ensaio_visual">Texto do Ensaio Visual</label>
+                    <textarea class="form-control form-control" id="texto_ensaio_visual" aria-describedby="textoEnsaioVisualField" rows="2"></textarea>
+                </div>
+
+                <div class="form-group col">
+                    <label for="texto_ensaio_dimensional">Texto do Ensaio Dimensional</label>
+                    <textarea class="form-control form-control" id="texto_ensaio_dimensional" aria-describedby="textoEnsaioDimensionalField" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="texto_ensaio_realizado">Texto do Ensaio Realizado</label>
+                    <textarea class="form-control form-control" id="texto_ensaio_realizado" aria-describedby="textoEnsaioRealizadoField" rows="2"></textarea>
+                </div>
+
+                <div class="form-group col">
+                    <label for="texto_resultado_ensaio">Texto do Resultado dos Ensaios</label>
+                    <textarea class="form-control form-control" id="texto_resultado_ensaio" aria-describedby="textoResultadoEnsaioField" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="texto_isencao_responsabilidade">Texto de Isenção de Responsabilidade</label>
+                    <textarea class="form-control form-control" id="texto_isencao_responsabilidade" aria-describedby="textoIsencaoResponsabilidadeField" rows="2"></textarea>
+                </div>
+
+                <div class="form-group col">
+                    <label for="texto_recomendacao">Texto de Recomendação</label>
+                    <textarea class="form-control form-control" id="texto_recomendacao" aria-describedby="textoRecomendacaoField" rows="2"></textarea>
+                </div>
+            </div>
+
+        </fieldset>
+
     </form>
 
     <script src="./script.js"></script>
