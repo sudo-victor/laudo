@@ -5,15 +5,6 @@ const configPlusElement = document.querySelector('.config-adicionais');
 const equipmentsElement = document.querySelector('#equipments');
 
 let configOpenned = false;
-const selectClassWithSearch = ['solicitanteSelect', 'selectpicker']; // Nome de todas as classes CSS que deseja utilizar o select com pesquisa
-
-function loadSelectWithSearch() {
-    selectClassWithSearch.forEach((className) => {
-        $(() => {
-            $(`.${className}`).selectpicker();
-        });
-    });    
-}
 
 function toggleInputsHidden(e) {
     if(Number(e.target.value) !== 0) {
@@ -23,13 +14,15 @@ function toggleInputsHidden(e) {
     }
 }
 
-function toggleConfigPlus() {
+function toggleConfigPlus(e) {
     if(configOpenned) {
         configPlusElement.style.display = 'none';
         configOpenned = false;
+        e.innerHTML = "Mais Configurações";
     } else {
         configPlusElement.style.display = 'block';
         configOpenned = true;
+        e.innerHTML = "Menos Configurações";
     }
 }
 
@@ -37,31 +30,31 @@ function generateEquipmentTemplate(idx) {
     return `
         <div class="form-group col">
         <label for="equipamento_${idx}">Nome do Equipamento:</label>
-        <select class="form-control form-control equipamento equipamento_${idx}" id="equipamento_${idx}"  data-live-search="true" required>
-            <option data-tokes="">Selecione um equipamento</option>
-            <option data-tokes="equipamento_234">equipamento 1</option>
-            <option data-tokes="equipamento_2342">equipamento 2</option>
-            <option data-tokes="equipamento_3876">equipamento 3</option>
-            <option data-tokes="equipamento_4567">equipamento 4</option>
-            <option data-tokes="equipamento_5646">equipamento 5</option>
-            <option data-tokes="equipamento_6567">equipamento 6</option>
-            <option data-tokes="equipamento_7765">equipamento 7</option>
-        </select>
+        <input list="equipmet_list_${idx}" id="equipamento_${idx}" name="equipamento_${idx}" class="form-control equipamento" placeholder="Selecione um cliente" required/>
+        <datalist id="equipmet_list_${idx}">
+            <option value="equipamento 1">
+            <option value="equipamento 2">
+            <option value="equipamento 3">
+            <option value="equipamento 4">
+            <option value="equipamento 5">
+            <option value="equipamento 6">
+            <option value="equipamento 7">
+        </datalist>
         </div>
 
         <div class="form-group col">
             <label for="numero_rastreio_${idx}">N° de Rastreio:</label>
-            <input class="form-control form-control-sm numero_rastreio_${idx}" id="numero_rastreio_${idx}" aria-describedby="numeroRastreioField">
+            <input class="form-control form-control-sm numero_rastreio" id="numero_rastreio_${idx}" aria-describedby="numeroRastreioField">
         </div>
 
         <div class="form-group col">
             <label for="numero_serie_ca_${idx}">N° de Séria/CA:</label>
-            <input class="form-control form-control-sm numero_serie_ca_${idx}" id="numero_serie_ca_${idx}" aria-describedby="numeroSerieCAField">
+            <input class="form-control form-control-sm numero_serie_ca" id="numero_serie_ca_${idx}" aria-describedby="numeroSerieCAField">
         </div>
 
         <div class="form-group col">
             <label for="resultado_${idx}">Resultado:</label>
-            <input class="form-control form-control-sm resultado_${idx}" id="resultado_${idx}" aria-describedby="resultadoField">
+            <input class="form-control form-control-sm resultado" id="resultado_${idx}" aria-describedby="resultadoField">
         </div>
 
     `
@@ -117,7 +110,7 @@ function getDataFormatted() {
     let equipments = []
 
     // Form Array
-    const equipamentoArrayGroup = document.querySelectorAll('select.equipamento');
+    const equipamentoArrayGroup = document.querySelectorAll('.equipamento');
     const numeroRastreioArrayGroup = document.querySelectorAll('.numero_rastreio');
     const numeroSerieArrayGroup = document.querySelectorAll('.numero_serie_ca');
     const resultadoArrayGroup = document.querySelectorAll('.resultado');
@@ -184,4 +177,3 @@ function handleSubmit(e) {
 
 laudoFormElement.addEventListener('submit', handleSubmit)
 cabecalhoElement.addEventListener('change', toggleInputsHidden);
-window.addEventListener('load', loadSelectWithSearch);
