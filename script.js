@@ -26,20 +26,51 @@ function toggleConfigPlus(e) {
     }
 }
 
+// Inicio Select
+
+function toggleSelectDropdown(e) {
+    const dropdown = e.nextSibling.nextSibling;
+    dropdown.classList.toggle('open-drop');
+}
+
+function handleChooseSelectItem(e) {
+    const newText = e.innerText;
+    const equipmentBox = e.parentElement.parentElement.parentElement.childNodes[3];
+    equipmentBox.innerText = newText;
+}
+
+function handleSearchItems(e) {
+    fetch('http://localhost:3000/laudo' + new URLSearchParams({
+        q: e.value,
+    }))
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(responseJson) {
+        console.log(responseJson)
+    })
+    .catch(function(err) {
+        console.log(err)
+    });
+
+    const itemGroupElement = e.parentElement.childNodes[3];
+}
+
+// Fim Select
+
 function generateEquipmentTemplate(idx) {
     return `
         <div class="form-group col">
         <label for="equipamento_${idx}">Nome do Equipamento:</label>
-        <input list="equipmet_list_${idx}" id="equipamento_${idx}" name="equipamento_${idx}" class="form-control equipamento" placeholder="Selecione um cliente" required/>
-        <datalist id="equipmet_list_${idx}">
-            <option value="equipamento 1">
-            <option value="equipamento 2">
-            <option value="equipamento 3">
-            <option value="equipamento 4">
-            <option value="equipamento 5">
-            <option value="equipamento 6">
-            <option value="equipamento 7">
-        </datalist>
+        <button onclick="toggleSelectDropdown(this)" type="button" name="equipamento" class="form-control equipamento dropdown-toggle d-flex align-items-center justify-content-between"  id="equipment__${idx}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Selecione um equipamento</button>
+        <div class="dropdown-menu" aria-labelledby="elemento" id="dropdown_elemento_${idx}">
+            <input class="form-control input_autocomplete my-2" id="input_autocomplete" name="input_autocomplete">   
+            <div class="w-100">
+                <a class="dropdown-item" onclick="handleChooseSelectItem(this)">Action</a>
+                <a class="dropdown-item" onclick="handleChooseSelectItem(this)">Another action</a>
+                <a class="dropdown-item" onclick="handleChooseSelectItem(this)">Something else here</a>
+            </div>
+        </div>
         </div>
 
         <div class="form-group col">
@@ -69,9 +100,6 @@ function addEquipmentGroup() {
     newElement.innerHTML = generateEquipmentTemplate(idx);
 
     equipmentsElement.appendChild(newElement);
-    $(function() {
-        $(`.equipamento_${idx}`).selectpicker();
-    });
 }
 
 function removeEquipmentGroup() {
@@ -86,9 +114,9 @@ function removeEquipmentGroup() {
 function getDataFormatted() {
     let data = {}
 
-    data['laudo'] = document.querySelector('#laudo_id').value;
+    data['numero_laudo'] = document.querySelector('#laudo_id').value;
     data['data_ensaio'] = document.querySelector('#data_ensaio').value;
-    data['testador'] = document.querySelector('#testador').value;
+    data['testador'] = Number(document.querySelector('#testador').value);
     data['placa_matricula'] = document.querySelector('#placa_matricula').value;
     data['cabecalho'] = document.querySelector('#cabecalho').value;
     data['assinatura_1'] = document.querySelector('#assinatura_1').value;
@@ -105,19 +133,19 @@ function getDataFormatted() {
         data['estabilizador'] = document.querySelector('#estabilizador').value;
     }
     
-    data['nome_cliente'] = document.querySelector('#nome_cliente').value;
+    data['nome_cliente'] = document.querySelector('button.nome_cliente').innerHTML === 'Selecione um equipamento' ? '' : document.querySelector('button.nome_cliente').innerHTML;
 
     let equipments = []
 
     // Form Array
-    const equipamentoArrayGroup = document.querySelectorAll('.equipamento');
+    const equipamentoArrayGroup = document.querySelectorAll('button.equipamento');
     const numeroRastreioArrayGroup = document.querySelectorAll('.numero_rastreio');
     const numeroSerieArrayGroup = document.querySelectorAll('.numero_serie_ca');
     const resultadoArrayGroup = document.querySelectorAll('.resultado');
 
     equipamentoArrayGroup.forEach((_, idx) => {
         const equipmentData = {
-            equipamento: equipamentoArrayGroup[idx].value,
+            equipamento: equipamentoArrayGroup[idx].innerHTML,
             numero_rastreio: numeroRastreioArrayGroup[idx].value,
             numero_serie: numeroSerieArrayGroup[idx].value,
             resultado: resultadoArrayGroup[idx].value
