@@ -59,6 +59,7 @@ function handleSearchItems(e) {
 // Fim Select
 
 function generateEquipmentTemplate(idx) {
+
     return `
         <div class="form-group col">
         <label for="equipamento_${idx}">Nome do Equipamento:</label>
@@ -82,20 +83,8 @@ function generateEquipmentTemplate(idx) {
             <label for="numero_serie_ca_${idx}">N° de Séria/CA:</label>
             <input class="form-control form-control-sm numero_serie_ca" id="numero_serie_ca_${idx}" aria-describedby="numeroSerieCAField">
         </div>
-
         
-                
-        <div class="form-group col">
-            <label for="resultado_${idx}">Resultado:</label>
-            <select class="form-control form-control resultado" id="resultado_${idx}" name="resultado_${idx}" aria-describedby="resultadoField">
-                <option value="">Selecione</option>
-                <option value="1">2</option>
-                <option value="1">3</option>
-                <option value="1">4</option>
-                <option value="1">5</option>
-            </select>
-        </div>
-    `
+    ` + "<div class='form-group col'> <label for='resultado_${idx}'>Resultado:</label><select class='form-control form-control resultado' id='resultado_${idx}' name='resultado' aria-describedby='resultadoField'><option th:each='result: ${T(br.com.mnsistem.laudoseletricos.model.enuns.Resultado).values()}' th:value='${result}' th:text='${result}'>Lista de cliente</option></select></div"
 }
 
 function addEquipmentGroup() {
