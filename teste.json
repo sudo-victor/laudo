@@ -1,0 +1,68 @@
+{
+  "numeroLaudo": "1",
+  "dataEnsaio": "20-06-2019 19:53",
+  "placaMatricula": "Equip/Test",
+  "tipoEnsaio": "Visual",
+  "categoria": null,
+  "marcaProduto": null,
+  "estado": null,
+  "lanca": null,
+  "numeroSerie": null,
+  "modelo": null,
+  "chassi": null,
+  "cesto": null,
+  "estabilizador": null,
+  "numeroRastreio": null,
+  "numeroSerieCa": null,
+  "testador": {
+    "id": 1,
+    "calibradores": [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      }
+    ]
+  },
+  "cabecalho": {
+    "id": 1
+  },
+  "assinaturas": [
+    {
+      "id": 1
+    }
+  ],
+  "items": [
+    {
+      "numeroRastreio": "122354",
+      "numeroSerieCa": "44558",
+      "resultado": "APROVADO",
+      "equipamento": {
+        "id": 1
+      }
+    },
+    {
+      "numeroRastreio": "567890",
+      "numeroSerieCa": "98767",
+      "resultado": "APROVADO",
+      "equipamento": {
+        "id": 2
+      }
+    },
+    {
+      "numeroRastreio": "567890",
+      "numeroSerieCa": "98767",
+      "resultado": "APROVADO",
+      "equipamento": {
+        "id": 3
+      }
+    }
+  ],
+  "cliente": {
+    "id": 1
+  },
+  "configLaudo": {
+    "id": 1
+  }
+}

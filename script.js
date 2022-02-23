@@ -30,30 +30,37 @@ function toggleConfigPlus(e) {
 
 function toggleSelectDropdown(e) {
     const dropdown = e.nextSibling.nextSibling;
+    const input = dropdown.childNodes[1];
+
     dropdown.classList.toggle('open-drop');
+    input.focus();
 }
 
 function handleChooseSelectItem(e) {
     const newText = e.innerText;
     const equipmentBox = e.parentElement.parentElement.parentElement.childNodes[3];
     equipmentBox.innerText = newText;
+    e.parentElement.parentElement.classList.remove('open-drop')
 }
 
-function handleSearchItems(e) {
-    fetch('http://localhost:3000/laudo' + new URLSearchParams({
+function handleSearchItems(e, endpoint) {
+    const listEl = e.parentElement.childNodes[3]
+    fetch(endpoint + '?' + new URLSearchParams({
         q: e.value,
     }))
     .then(function(response) {
         return response.json();
     })
     .then(function(responseJson) {
-        console.log(responseJson)
+        const options = responseJson.map(op => {
+            return `<a class="dropdown-item" onclick="handleChooseSelectItem(this)">${op}</a>`
+        })
+
+        listEl.innerHTML = options.join(' ')
     })
     .catch(function(err) {
         console.log(err)
     });
-
-    const itemGroupElement = e.parentElement.childNodes[3];
 }
 
 // Fim Select
@@ -65,12 +72,8 @@ function generateEquipmentTemplate(idx) {
         <label for="equipamento_${idx}">Nome do Equipamento:</label>
         <button onclick="toggleSelectDropdown(this)" type="button" name="equipamento" class="form-control equipamento dropdown-toggle d-flex align-items-center justify-content-between"  id="equipment__${idx}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Selecione um equipamento</button>
         <div class="dropdown-menu" aria-labelledby="elemento" id="dropdown_elemento_${idx}">
-            <input class="form-control input_autocomplete my-2" id="input_autocomplete" name="input_autocomplete">   
-            <div class="w-100">
-                <a class="dropdown-item" onclick="handleChooseSelectItem(this)">Action</a>
-                <a class="dropdown-item" onclick="handleChooseSelectItem(this)">Another action</a>
-                <a class="dropdown-item" onclick="handleChooseSelectItem(this)">Something else here</a>
-            </div>
+            <input class="form-control input_autocomplete my-2" id="input_autocomplete" name="input_autocomplete"  onkeypress="handleSearchItems(this, 'http://localhost:3000/laudo?')">   
+            <div class="w-100"></div>
         </div>
         </div>
 
@@ -83,8 +86,16 @@ function generateEquipmentTemplate(idx) {
             <label for="numero_serie_ca_${idx}">N° de Séria/CA:</label>
             <input class="form-control form-control-sm numero_serie_ca" id="numero_serie_ca_${idx}" aria-describedby="numeroSerieCAField">
         </div>
-        
-    ` + "<div class='form-group col'> <label for='resultado_${idx}'>Resultado:</label><select class='form-control form-control resultado' id='resultado_${idx}' name='resultado' aria-describedby='resultadoField'><option th:each='result: ${T(br.com.mnsistem.laudoseletricos.model.enuns.Resultado).values()}' th:value='${result}' th:text='${result}'>Lista de cliente</option></select></div"
+         
+        <div class="form-group col">
+        <label for="resultado_${idx}">Resultado:</label>
+        <select class="form-control form-control resultado" id="resultado_${idx}" name="resultado_${idx}" aria-describedby="resultadoField">
+            <option value="">Selecione</option>
+            <option value="1">Aprovado</option>
+            <option value="2">Reprovado</option>
+        </select>
+    </div>
+    `
 }
 
 function addEquipmentGroup() {
@@ -109,14 +120,19 @@ function removeEquipmentGroup() {
 
 function getDataFormatted() {
     let data = {}
+    let assinaturas = [ document.querySelector('#assinatura_1').value, document.querySelector('#assinatura_2').value ].filter(e => e)
+    assinaturas = assinaturas.map((a) => {
+        if(a) {
+            return { id: a }
+        }
+    })
 
     data['numero_laudo'] = document.querySelector('#laudo_id').value;
     data['data_ensaio'] = document.querySelector('#data_ensaio').value;
     data['testador'] = Number(document.querySelector('#testador').value);
     data['placa_matricula'] = document.querySelector('#placa_matricula').value;
-    data['cabecalho'] = document.querySelector('#cabecalho').value;
-    data['assinatura_1'] = document.querySelector('#assinatura_1').value;
-    data['assinatura_2'] = document.querySelector('#assinatura_2').value;
+    data['cabecalho'] = { id: document.querySelector('#cabecalho').value };
+    data['assinaturas'] = assinaturas;
     data['ensaios_realizados'] = document.querySelector('#ensaios_realizados').value;
 
     if(Number(data.cabecalho) === 0) {
@@ -129,7 +145,9 @@ function getDataFormatted() {
         data['estabilizador'] = document.querySelector('#estabilizador').value;
     }
     
-    data['nome_cliente'] = document.querySelector('button.nome_cliente').innerHTML === 'Selecione um equipamento' ? '' : document.querySelector('button.nome_cliente').innerHTML;
+    data['nome_cliente'] = {
+        id: document.querySelector('button.nome_cliente').innerHTML === 'Selecione um equipamento' ? '' : document.querySelector('button.nome_cliente').innerHTML
+    };
 
     let equipments = []
 
@@ -141,7 +159,7 @@ function getDataFormatted() {
 
     equipamentoArrayGroup.forEach((_, idx) => {
         const equipmentData = {
-            equipamento: equipamentoArrayGroup[idx].innerHTML,
+            equipamento: { id: equipamentoArrayGroup[idx].innerHTML },
             numero_rastreio: numeroRastreioArrayGroup[idx].value,
             numero_serie: numeroSerieArrayGroup[idx].value,
             resultado: resultadoArrayGroup[idx].value
@@ -164,7 +182,7 @@ function getDataFormatted() {
         data['recomendacao'] = document.querySelector('#recomendacao').value;
     }
 
-    data['equipamentos'] = [...equipments];
+    data['items'] = [...equipments];
 
     return data;
 }

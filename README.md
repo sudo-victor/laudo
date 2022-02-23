@@ -1,4 +1,4 @@
-- [x] Arrumar os ícones;
-- [x] campos requiridos;
-- [x] Deixar a requisição já preparada;
-- [x] Adicionar mais configurações;
+- [x] Ajustar a requisição do laudo;
+- [x] Adicionar blur nos inputs;
+- [x] Fechar dropdown quando selecionar item;
+- [ ] Requisição para dados
