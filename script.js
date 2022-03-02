@@ -39,11 +39,17 @@ function toggleSelectDropdown(e) {
 function handleChooseSelectItem(e) {
     const newText = e.innerText;
     const equipmentBox = e.parentElement.parentElement.parentElement.childNodes[3];
+    const cnpjEl = document.querySelector('#cnpjSolicitante')
+    if(e.hasAttribute('cnpj')) {
+        cnpjEl.setAttribute('value', e.getAttribute('cnpj'))
+    }
     equipmentBox.innerText = newText;
+    equipmentBox.setAttribute('value', e.getAttribute('value'));
+    equipmentBox.setAttribute('cnpj', e.getAttribute('cnpj'));
     e.parentElement.parentElement.classList.remove('open-drop')
 }
 
-function handleSearchItems(e, endpoint) {
+function handleSearchItems(e, endpoint, hasCNPJ = false) {
     const listEl = e.parentElement.childNodes[3]
     fetch(endpoint + '?' + new URLSearchParams({
         q: e.value,
@@ -53,7 +59,7 @@ function handleSearchItems(e, endpoint) {
     })
     .then(function(responseJson) {
         const options = responseJson.map(op => {
-            return `<a class="dropdown-item" onclick="handleChooseSelectItem(this)">${op}</a>`
+            return `<a class="dropdown-item" onclick="handleChooseSelectItem(this)" ${hasCNPJ && 'cnpj="' + op.slug + '"'} value="${hasCNPJ ? op.id : op.id.id}">${op.text}</a>`
         })
 
         listEl.innerHTML = options.join(' ')
@@ -127,10 +133,10 @@ function getDataFormatted() {
         }
     })
 
-    data['numero_laudo'] = document.querySelector('#laudo_id').value;
-    data['data_ensaio'] = document.querySelector('#data_ensaio').value;
-    data['testador'] = Number(document.querySelector('#testador').value);
-    data['placa_matricula'] = document.querySelector('#placa_matricula').value;
+    data['numeroLaudo'] = document.querySelector('#laudo_id').value;
+    data['dataEnsaio'] = document.querySelector('#data_ensaio').value && new Date(document.querySelector('#data_ensaio').value);
+    data['testador'] = { id: Number(document.querySelector('#testador').value) };
+    data['placaMatricula'] = document.querySelector('#placa_matricula').value;
     data['cabecalho'] = { id: document.querySelector('#cabecalho').value };
     data['assinaturas'] = assinaturas;
     data['ensaios_realizados'] = document.querySelector('#ensaios_realizados').value;
@@ -144,10 +150,9 @@ function getDataFormatted() {
         data['cesto'] = document.querySelector('#cesto').value;
         data['estabilizador'] = document.querySelector('#estabilizador').value;
     }
-    
-    data['nome_cliente'] = {
-        id: document.querySelector('button.nome_cliente').innerHTML === 'Selecione um equipamento' ? '' : document.querySelector('button.nome_cliente').innerHTML
-    };
+
+    const client = document.querySelector('button.nome_cliente').innerHTML === 'Selecione um equipamento' ? null : JSON.parse(document.querySelector('button.nome_cliente').getAttribute('value'))
+    data['nome_cliente'] = { ...client };
 
     let equipments = []
 
@@ -159,7 +164,7 @@ function getDataFormatted() {
 
     equipamentoArrayGroup.forEach((_, idx) => {
         const equipmentData = {
-            equipamento: { id: equipamentoArrayGroup[idx].innerHTML },
+            equipamento: { id: equipamentoArrayGroup[idx].getAttribute('value') },
             numero_rastreio: numeroRastreioArrayGroup[idx].value,
             numero_serie: numeroSerieArrayGroup[idx].value,
             resultado: resultadoArrayGroup[idx].value
@@ -168,20 +173,23 @@ function getDataFormatted() {
         equipments.push(equipmentData);
     })
 
+    const config = [] 
+    config['id'] = 1
     // Adiciona as configurações adicionais no objeto data se estiver ativado
     if(configOpenned) {
-        data['validade_teste'] = document.querySelector('#validade_teste').value;
-        data['cidade'] = document.querySelector('#cidade').value;
-        data['temperatura_ambiente'] = document.querySelector('#temperatura_ambiente').value;
-        data['umidade_relativa'] = document.querySelector('#umidade_relativa').value;
-        data['ensaio_visual'] = document.querySelector('#ensaio_visual').value;
-        data['ensaio_dimensional'] = document.querySelector('#ensaio_dimensional').value;
-        data['ensaio_realizado'] = document.querySelector('#ensaio_realizado').value;
-        data['resultado_ensaio'] = document.querySelector('#resultado_ensaio').value;
-        data['isencao_responsabilidade'] = document.querySelector('#isencao_responsabilidade').value;
-        data['recomendacao'] = document.querySelector('#recomendacao').value;
+        config['temperatura_ambiente'] = document.querySelector('#temperatura_ambiente').value;
+        config['validade_teste'] = document.querySelector('#validade_teste').value;
+        config['cidade'] = document.querySelector('#cidade').value;
+        config['umidade_relativa'] = document.querySelector('#umidade_relativa').value;
+        config['ensaio_visual'] = document.querySelector('#ensaio_visual').value;
+        config['ensaio_dimensional'] = document.querySelector('#ensaio_dimensional').value;
+        config['ensaio_realizado'] = document.querySelector('#ensaio_realizado').value;
+        config['resultado_ensaio'] = document.querySelector('#resultado_ensaio').value;
+        config['isencao_responsabilidade'] = document.querySelector('#isencao_responsabilidade').value;
+        config['recomendacao'] = document.querySelector('#recomendacao').value;
     }
 
+    data['config'] = [...config];
     data['items'] = [...equipments];
 
     return data;
